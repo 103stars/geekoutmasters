@@ -238,7 +238,7 @@ public class GUIGridBagLayout extends JFrame {
 
     /**
      * Metodo main del programa
-     * @param args Objeto usado
+     * @param args Objeto usado para inicializar el programa desde la clase especificado
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -246,8 +246,10 @@ public class GUIGridBagLayout extends JFrame {
         });
     }
 
-
-
+    /**
+     * Metodo escucha utilizado para hacer que cada boton tenga una funcionalidad ademas de dar comportamientos a cada
+     * cara del dado
+     */
 
     public class Escucha implements ActionListener {
         @Override
@@ -426,7 +428,9 @@ public class GUIGridBagLayout extends JFrame {
                 JOptionPane.showMessageDialog(null, "" + dadoEnUso[0] + "-" + dadoEnUso[1] + "-" +dadoEnUso[2]);
             }
             if (e.getSource() == usar) {
-                //meeple
+                /**
+                 * Comportamiento meeple
+                 */
                  if(dadoEnUso[0] == 1){
                     if(dadoEnUso[2] == 1){//posicion del dado al que afecta el meeple.
                         int[] caras = modelGeek.getCaras();
@@ -470,7 +474,9 @@ public class GUIGridBagLayout extends JFrame {
 
                     }
 
-                    // COHETE
+                     /**
+                      * Comportamiento cohete
+                      */
                 } else if (dadoEnUso[0] == 2){
                      if(dadoEnUso[2]==1){
 
@@ -525,11 +531,13 @@ public class GUIGridBagLayout extends JFrame {
                 }
             }else if(dadoEnUso[0]==3){
                      if(dadoEnUso[1]==3){
-
                      }
                  }
-                dadoEnUso[0]=0;
-        } else if(dadoEnUso[0] == 4) {//corazon
+
+                /**
+                 * Comportamiento meeple
+                 */
+        } else if(dadoEnUso[0] == 4) {
                 if(dadoEnUso[2] == 8) {
                     int[] caras = modelGeek.getCaras();
                     panelDadosUso.add(dado8);
@@ -557,15 +565,12 @@ public class GUIGridBagLayout extends JFrame {
                     revalidate();
                     /*imageDado = new ImageIcon(getClass().getResource("/dados/"+ caras[10]+ ".png"));
                     dado10Boton.setIcon(imageDado);
-
                      */
                 }
-                }
-
-        }
-
+            }
         }
     }
+}
 
 
 
