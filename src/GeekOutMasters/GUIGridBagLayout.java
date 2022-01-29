@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class GUIGridBagLayout extends JFrame {
 
     private Header headerProject;
-    private JLabel dado0, dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9;
+    private JLabel dado0, dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private JButton dado1Boton, dado2Boton, dado3Boton, dado4Boton, dado5Boton, dado6Boton, dado7Boton, dado8Boton, dado9Boton, dado10Boton, lanzar, usar, help, probar;
     private JPanel panelDadosUso, panelDadosNoUso, panelBotones, utilizados, panelBotonesUtilizados;
     private JTextArea puntuacion;
