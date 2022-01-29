@@ -25,9 +25,9 @@ public class ModelGeek {
         caras = new int[10];
 
     }
-/*
+/**
 *calcularCara store a random value at a position in an array, this array is used to put a face on the dice in the Escuha/
-* */
+*/
 
     public void calcularCara() {
         caraDado1 = dado1.getCara();
@@ -63,7 +63,8 @@ public class ModelGeek {
     /**
     *getEstadoToString.
     *this function shows the user the things that he cannot do.
-    **/
+    */
+
     public String[] getEstadoToString() {//estado del juego.
         switch (estado) {
             case 1:
@@ -88,16 +89,16 @@ public class ModelGeek {
         }
         return estadoToString;
     }
-    /*
+    /**
     * Return the array caras.
-    * */
+    */
     public int[] getCaras() {
         return caras;
     }
 
-    /*
+    /**
     * Return the array dadaEnUso.
-    * */
+    */
     public int[] getDadoEnUso() {
         return dadoEnUso;
     }
