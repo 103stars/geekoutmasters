@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Clase GuiGridBagLayout donde se crean todos los objetos graficos y parte del funcionamiento del programa
+ * GuiGridBagLayout Class where visual elements and logic behind the program is set up
  * @autor 202040393    LASSO MEDINA ALEJANDRO		    alejandro.lasso@correounivalle.edu.co
  * 2043203	LOPEZ CESPEDES SEBASTIAN ALEXIS				sebastian.cespedes@correounivalle.edu.co
  * @version v.1.0.0 date 28/01/2022
@@ -26,7 +26,8 @@ public class GUIGridBagLayout extends JFrame {
     private int[] dadoEnUso, dadosInactivos, dadosUsados;
 
     /**
-     * Constructor Clase GUI que inicializa la ventana contenedora del resto de elementos visuales
+     *
+     * GUI class constructor, initializes container window and the rest of visual elements
      */
     public GUIGridBagLayout() {
         initGUI();
@@ -39,8 +40,8 @@ public class GUIGridBagLayout extends JFrame {
     }
 
     /**
-     * Este metodo es usado para configurar los JComponent dentro de la ventana y
-     * se inicializa cada objeto
+     * This method is used to set up all of the Jcomponet within container window
+     * and initializes each object
      */
 
     private void initGUI() {
@@ -54,8 +55,6 @@ public class GUIGridBagLayout extends JFrame {
         dadosUsados = new int[10];
         placeholder = new ImageIcon(getClass().getResource("/dados/" + "placeholder.png"));
         iconoX = new ImageIcon(getClass().getResource("/dados/" + "x.png"));
-
-
 
         dado0 = new JLabel(placeholder);
         dado1 = new JLabel(placeholder);
@@ -84,8 +83,7 @@ public class GUIGridBagLayout extends JFrame {
         this.add(headerProject, constraints);
 
         /**
-         * Creacion de paneles y ubicacion en el JFrame principal usando
-         * GridBagLayout y GridBagConstraints
+         * Making of JPanels and positioning of them in the main JFrame using GridBagLayout as layout manager
          */
         panelDadosUso = new JPanel();
         panelDadosUso.setPreferredSize(new Dimension(360, 295));
@@ -131,7 +129,7 @@ public class GUIGridBagLayout extends JFrame {
 
 
         /**
-         * Creacion y ubicacion de botones
+         * Creation and positioning of each button
          */
 
         help = new JButton("?");
@@ -186,9 +184,6 @@ public class GUIGridBagLayout extends JFrame {
         dado10Boton = new JButton("    Dado 10    ");
         dado10Boton.addActionListener(escucha);
 
-
-
-
         panelBotonesUtilizados = new JPanel();
         panelBotonesUtilizados.setPreferredSize(new Dimension(360, 60));
         constraints.gridx = 0;
@@ -199,8 +194,6 @@ public class GUIGridBagLayout extends JFrame {
         panelBotonesUtilizados.add(dado8Boton);
         panelBotonesUtilizados.add(dado9Boton);
         panelBotonesUtilizados.add(dado10Boton);
-
-
 
         lanzar = new JButton("Lanzar");
         lanzar.addActionListener(escucha);
@@ -237,8 +230,9 @@ public class GUIGridBagLayout extends JFrame {
     }
 
     /**
-     * Metodo main del programa
-     * @param args Objeto usado para inicializar el programa desde la clase especificado
+     * Main process of the Java program
+     * @param args Object used in order to send input data from command line when
+     *             the program is executed by console.
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -247,8 +241,7 @@ public class GUIGridBagLayout extends JFrame {
     }
 
     /**
-     * Metodo escucha utilizado para hacer que cada boton tenga una funcionalidad ademas de dar comportamientos a cada
-     * cara del dado
+     * ActionListener method which makes each button work. Logic behind dice faces are also implemented
      */
 
     public class Escucha implements ActionListener {
@@ -296,6 +289,9 @@ public class GUIGridBagLayout extends JFrame {
 
 
             }
+            /*
+            * "if" they model the buttons of the dice.
+            * */
             if (e.getSource() == dado1Boton) {
                 int[] caras = modelGeek.getCaras();
                 if (dadoEnUso[0] == 0) {
@@ -429,7 +425,7 @@ public class GUIGridBagLayout extends JFrame {
             }
             if (e.getSource() == usar) {
                 /**
-                 * Comportamiento meeple
+                 * meeple behavior
                  */
                  if(dadoEnUso[0] == 1){
                     if(dadoEnUso[2] == 1){//posicion del dado al que afecta el meeple.
@@ -475,7 +471,7 @@ public class GUIGridBagLayout extends JFrame {
                     }
 
                      /**
-                      * Comportamiento cohete
+                      * rocket(cohete) behavior
                       */
                 } else if (dadoEnUso[0] == 2){
                      if(dadoEnUso[2]==1){
@@ -535,7 +531,7 @@ public class GUIGridBagLayout extends JFrame {
                  }
 
                 /**
-                 * Comportamiento meeple
+                 * heart behavior
                  */
         } else if(dadoEnUso[0] == 4) {
                 if(dadoEnUso[2] == 8) {
