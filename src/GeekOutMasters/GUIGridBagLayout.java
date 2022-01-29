@@ -5,6 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase GuiGridBagLayout donde se crean todos los objetos graficos y parte del funcionamiento del programa
+ * @autor 202040393    LASSO MEDINA ALEJANDRO		    alejandro.lasso@correounivalle.edu.co
+ * 2043203	LOPEZ CESPEDES SEBASTIAN ALEXIS				sebastian.cespedes@correounivalle.edu.co
+ * @version v.1.0.0 date 28/01/2022
+ */
+
+
 public class GUIGridBagLayout extends JFrame {
 
     private Header headerProject;
@@ -17,6 +25,9 @@ public class GUIGridBagLayout extends JFrame {
     private Escucha escucha;
     private int[] dadoEnUso, dadosInactivos, dadosUsados;
 
+    /**
+     * Constructor Clase GUI que inicializa la ventana contenedora del resto de elementos visuales
+     */
     public GUIGridBagLayout() {
         initGUI();
         this.setTitle("geek out masters");
@@ -27,6 +38,11 @@ public class GUIGridBagLayout extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * Este metodo es usado para configurar los JComponent dentro de la ventana y
+     * se inicializa cada objeto
+     */
+
     private void initGUI() {
 
         this.getContentPane().setLayout(new GridBagLayout());
@@ -36,8 +52,10 @@ public class GUIGridBagLayout extends JFrame {
         dadoEnUso = new int[4];
         dadosInactivos = new int[10];
         dadosUsados = new int[10];
-        placeholder = new ImageIcon(getClass().getResource("/dados/" +  "placeholder.png"));
-        iconoX = new ImageIcon(getClass().getResource("/dados/" +  "x.png"));
+        placeholder = new ImageIcon(getClass().getResource("/dados/" + "placeholder.png"));
+        iconoX = new ImageIcon(getClass().getResource("/dados/" + "x.png"));
+
+
 
         dado0 = new JLabel(placeholder);
         dado1 = new JLabel(placeholder);
@@ -65,7 +83,10 @@ public class GUIGridBagLayout extends JFrame {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         this.add(headerProject, constraints);
 
-        //Ubicacion de paneles
+        /**
+         * Creacion de paneles y ubicacion en el JFrame principal usando
+         * GridBagLayout y GridBagConstraints
+         */
         panelDadosUso = new JPanel();
         panelDadosUso.setPreferredSize(new Dimension(360, 295));
         panelDadosUso.setBorder(BorderFactory.createTitledBorder("Dados Activos"));
@@ -108,7 +129,11 @@ public class GUIGridBagLayout extends JFrame {
         constraints.anchor = GridBagConstraints.LINE_END;
         add(utilizados, constraints);
 
-        //Ubicacion de botones
+
+        /**
+         * Creacion y ubicacion de botones
+         */
+
         help = new JButton("?");
         help.addActionListener(escucha);
         constraints.gridx = 0;
@@ -191,7 +216,6 @@ public class GUIGridBagLayout extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
-        //constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_END;
         add(usar, constraints);
 
@@ -210,13 +234,12 @@ public class GUIGridBagLayout extends JFrame {
         panelBotones.add(dado7Boton);
         add(panelBotones, constraints);
 
-
-
-
-
-
     }
 
+    /**
+     * Metodo main del programa
+     * @param args Objeto usado
+     */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             GUIGridBagLayout miProjectGUI = new GUIGridBagLayout();
@@ -229,6 +252,9 @@ public class GUIGridBagLayout extends JFrame {
     public class Escucha implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            /*
+            *
+            * */
             if (e.getSource() == lanzar) {
                 utilizados.removeAll();
                 //utilizados.revalidate();
@@ -506,16 +532,33 @@ public class GUIGridBagLayout extends JFrame {
         } else if(dadoEnUso[0] == 4) {//corazon
                 if(dadoEnUso[2] == 8) {
                     int[] caras = modelGeek.getCaras();
+                    panelDadosUso.add(dado8);
+                    repaint();
+                    revalidate();
+                    /*
                     imageDado = new ImageIcon(getClass().getResource("/dados/" + caras[8] + ".png"));
                     dado8.setIcon(imageDado);
+
+                     */
                     } else if(dadoEnUso[2] == 9) {
                     int[] caras = modelGeek.getCaras();
+                    panelDadosUso.add(dado9);
+                    repaint();
+                    revalidate();
+                    /*
                     imageDado = new ImageIcon((getClass().getResource("/dados/"+ caras[9]+ ".png")));
                     dado9.setIcon(imageDado);
+
+                     */
                 } else if (dadoEnUso[2] == 10) {
                     int[] caras = modelGeek.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/dados/"+ caras[10]+ ".png"));
+                    panelDadosUso.add(dado10);
+                    repaint();
+                    revalidate();
+                    /*imageDado = new ImageIcon(getClass().getResource("/dados/"+ caras[10]+ ".png"));
                     dado10Boton.setIcon(imageDado);
+
+                     */
                 }
                 }
 
