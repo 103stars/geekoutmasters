@@ -16,6 +16,7 @@ public class GUIGridBagLayout extends JFrame {
     private ModelGeek modelGeek;
     private Escucha escucha;
     private int[] dadoEnUso, dadosInactivos, dadosUsados;
+
     public GUIGridBagLayout() {
         initGUI();
         this.setTitle("geek out masters");
@@ -48,6 +49,14 @@ public class GUIGridBagLayout extends JFrame {
         dado7 = new JLabel(placeholder);
         dado8 = new JLabel(placeholder);
         dado9 = new JLabel(placeholder);
+        dado10 = new JLabel(placeholder);
+        probar = new JButton("probar");
+
+        probar.addActionListener(escucha);
+        constraints.gridx=1;
+        constraints.gridy=1;
+        constraints.anchor=GridBagConstraints.LINE_END;
+        add(probar,constraints);
 
         headerProject = new Header("header", Color.BLACK);
         constraints.gridx = 0;
@@ -87,12 +96,7 @@ public class GUIGridBagLayout extends JFrame {
         constraints.fill = GridBagConstraints.CENTER;
         constraints.anchor = GridBagConstraints.SOUTH+2;
         add(panelDadosNoUso, constraints);
-        /*
-        panelDadosNoUso.add(dado7);
-        panelDadosNoUso.add(dado8);
-        panelDadosNoUso.add(dado9);
 
-         */
 
         utilizados = new JPanel();
         utilizados.setPreferredSize(new Dimension(360, 455));
@@ -112,12 +116,7 @@ public class GUIGridBagLayout extends JFrame {
         constraints.anchor = GridBagConstraints.LINE_START;
         add(help, constraints);
 
-        probar = new JButton("probar");
-        probar.addActionListener(escucha);
-        constraints.gridx=2;
-        constraints.gridy=1;
-        constraints.anchor=GridBagConstraints.LINE_START;
-        add(probar,constraints);
+
 
         panelDadosUso.add(dado0);
         panelDadosUso.add(dado1);
@@ -126,9 +125,11 @@ public class GUIGridBagLayout extends JFrame {
         panelDadosUso.add(dado4);
         panelDadosUso.add(dado5);
         panelDadosUso.add(dado6);
-        panelDadosNoUso.add(dado7);
+
         panelDadosNoUso.add(dado8);
+        panelDadosNoUso.add(dado7);
         panelDadosNoUso.add(dado9);
+
 
         dado1Boton = new JButton("     Dado 1    ");
         dado1Boton.addActionListener(escucha);
@@ -229,6 +230,9 @@ public class GUIGridBagLayout extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == lanzar) {
+                utilizados.removeAll();
+                //utilizados.revalidate();
+                utilizados.repaint();
                 modelGeek.calcularCara();
                 int[] caras = modelGeek.getCaras();
 
@@ -253,14 +257,29 @@ public class GUIGridBagLayout extends JFrame {
                 imageDado = new ImageIcon(getClass().getResource("/dados/" + caras[6] + ".png"));
                 dado6.setIcon(imageDado);
 
+                imageDado = new ImageIcon(getClass().getResource("/dados/" + caras[7] + ".png"));
+                dado7.setIcon(imageDado);
+
+                imageDado = new ImageIcon(getClass().getResource("/dados/" + caras[8] + ".png"));
+                dado8.setIcon(imageDado);
+
+                imageDado = new ImageIcon(getClass().getResource("/dados/" + caras[1] + ".png"));
+                dado9.setIcon(imageDado);
+
+
             }
             if (e.getSource() == dado1Boton) {
                 int[] caras = modelGeek.getCaras();
                 if (dadoEnUso[0] == 0) {
+
                     dadoEnUso[0] = caras[0];
                     dadosUsados[0] = 1;
+                    //imageDado = new ImageIcon(getClass().getResource("/dados/" + "x.png"));
+                    utilizados.add(dado0);
                     imageDado = new ImageIcon(getClass().getResource("/dados/" + "x.png"));
                     dado0.setIcon(imageDado);
+
+
                 } else {
                     dadoEnUso[1] = caras[0];
                     dadoEnUso[2] = 1;
@@ -272,6 +291,7 @@ public class GUIGridBagLayout extends JFrame {
                 if (dadoEnUso[0] == 0) {
                     dadoEnUso[0] = caras[1];
                     dadosUsados[1] = 2;
+                    utilizados.add(dado1);
                     imageDado = new ImageIcon(getClass().getResource("/dados/" + "x.png"));
                     dado1.setIcon(imageDado);
                 } else {
@@ -317,7 +337,7 @@ public class GUIGridBagLayout extends JFrame {
                     dadoEnUso[2] = 5;
                 }
             }
-            if(e.getSource() == dado6Boton){
+
             if (e.getSource() == dado6Boton) {
                 int[] caras = modelGeek.getCaras();
                 if (dadoEnUso[0] == 0) {
@@ -330,7 +350,7 @@ public class GUIGridBagLayout extends JFrame {
                     dadoEnUso[2] = 6;
                 }
             }
-            }
+
             if (e.getSource() == dado7Boton) {
                 int[] caras = modelGeek.getCaras();
                 if (dadoEnUso[0] == 0) {
@@ -351,7 +371,7 @@ public class GUIGridBagLayout extends JFrame {
                     dadoEnUso[1] = caras[8];
                     dadoEnUso[2] = 8;
                 }
-            } if(e.getSource() == dado9Boton){
+            } if(e.getSource() == dado9Boton ){
                 int[] caras = modelGeek.getCaras();
                 if(dadoEnUso[0] == 0) {
                     dadoEnUso[0] = caras[9];
@@ -363,7 +383,7 @@ public class GUIGridBagLayout extends JFrame {
             } if(e.getSource() == dado10Boton){
                 int[] caras = modelGeek.getCaras();
                 if (dadoEnUso[0] == 0) {
-                    dadoEnUso[0] = caras[10];
+                    //dadoEnUso[0] = caras[10];
                     dadosUsados[9] = 10;
                 } else {
                     dadoEnUso[1] = caras[10];
@@ -379,8 +399,8 @@ public class GUIGridBagLayout extends JFrame {
             if(e.getSource() == probar){
                 JOptionPane.showMessageDialog(null, "" + dadoEnUso[0] + "-" + dadoEnUso[1] + "-" +dadoEnUso[2]);
             }
-            if (e.getSource() == usar) {//meeple
-
+            if (e.getSource() == usar) {
+                //meeple
                  if(dadoEnUso[0] == 1){
                     if(dadoEnUso[2] == 1){//posicion del dado al que afecta el meeple.
                         int[] caras = modelGeek.getCaras();
@@ -427,51 +447,62 @@ public class GUIGridBagLayout extends JFrame {
                     // COHETE
                 } else if (dadoEnUso[0] == 2){
                      if(dadoEnUso[2]==1){
+
                          //dado0.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[0]+".png"));
                          dado0.setIcon(imageDado);
-                         panelDadosNoUso.add(dado0);
+                         utilizados.add(dado0);
                      }else if(dadoEnUso[2]==2){
+
                          //dado1.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[1]+".png"));
                          dado1.setIcon(imageDado);
-                         panelDadosNoUso.add(dado1);
+                         utilizados.add(dado1);
 
                      }else if(dadoEnUso[2]==3){
                          //dado2.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[2]+".png"));
                          dado2.setIcon(imageDado);
-                         panelDadosNoUso.add(dado2);
+                         utilizados.add(dado2);
                      }else if(dadoEnUso[2]==4){
+
                          //dado3.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[3]+".png"));
                          dado3.setIcon(imageDado);
-                         panelDadosNoUso.add(dado3);
+                         utilizados.add(dado3);
                      }else if(dadoEnUso[2]==5){
+
                          //dado4.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[4]+".png"));
                          dado4.setIcon(imageDado);
-                         panelDadosNoUso.add(dado4);
+                         utilizados.add(dado4);
                      }else if(dadoEnUso[2]==6){
+
                          //dado5.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[5]+".png"));
                          dado5.setIcon(imageDado);
-                         panelDadosNoUso.add(dado5);
+                         utilizados.add(dado5);
                      }else if(dadoEnUso[2]==7){
+
                          dado6.setIcon(null);
                          int[] caras = modelGeek.getCaras();
                          imageDado=new ImageIcon(getClass().getResource("/dados/"+caras[6]+".png"));
                          dado6.setIcon(imageDado);
-                         panelDadosNoUso.add(dado6);
+                         utilizados.add(dado6);
 
                 }
-            }
+            }else if(dadoEnUso[0]==3){
+                     if(dadoEnUso[1]==3){
+
+                     }
+                 }
+                dadoEnUso[0]=0;
         } else if(dadoEnUso[0] == 4) {//corazon
                 if(dadoEnUso[2] == 8) {
                     int[] caras = modelGeek.getCaras();
@@ -487,7 +518,8 @@ public class GUIGridBagLayout extends JFrame {
                     dado10Boton.setIcon(imageDado);
                 }
                 }
-            }
+
+        }
 
         }
     }

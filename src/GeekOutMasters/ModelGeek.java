@@ -1,8 +1,8 @@
 package GeekOutMasters;
 
 public class ModelGeek {
-    private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int estado, caraDado1, caraDado2, caraDado3, caraDado4, caraDado5, caraDado6, caraDado7, caraDado8, caraDado9, caraDado10;
+    private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9;
+    private int estado, caraDado1, caraDado2, caraDado3, caraDado4, caraDado5, caraDado6, caraDado7, caraDado8, caraDado9, caraDado10, caraDado11;
     private int[] dadosActivos, dadosInactivos, dadosUtilizados, dadoEnUso, caras;
     private String[] estadoToString;
 
@@ -21,7 +21,7 @@ public class ModelGeek {
         dado7 = new Dados();
         dado8 = new Dados();
         dado9 = new Dados();
-        dado10= new Dados();
+
         caras = new int[10];
 
     }
@@ -36,7 +36,6 @@ public class ModelGeek {
         caraDado7 = dado7.getCara();
         caraDado8 = dado8.getCara();
         caraDado9 = dado9.getCara();
-        caraDado10 = dado10.getCara();
 
         caras[0] = caraDado1;
         caras[1] = caraDado2;
